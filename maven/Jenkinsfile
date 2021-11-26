@@ -1,6 +1,8 @@
 pipeline{
   agent any
-  
+  environment {
+    jarLocation- 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\dxc-maven-pipeline\\target\\my-app-1.0-SNAPSHOT.jar'
+  }
   tools{
     maven "jenkins-mvn"
   }
@@ -14,5 +16,9 @@ pipeline{
       }
     }
   }
-
+  post {
+    success{
+      bat 'java -jar %jarLocation%'
+    }
+  }
 }
